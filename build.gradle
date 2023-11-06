@@ -56,6 +56,15 @@ subprojects {
         implementation 'org.springframework.session:spring-session-data-redis'
         implementation 'io.lettuce:lettuce-core:6.2.4.RELEASE'
         
+        // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+        implementation 'org.apache.commons:commons-lang3:3.12.0'
+        // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
+        implementation 'org.apache.commons:commons-collections4:4.4'
+        // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+        implementation 'org.apache.commons:commons-text:1.10.0'
+        // https://mvnrepository.com/artifact/commons-io/commons-io
+        implementation 'commons-io:commons-io:2.13.0'
+        
         runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
         
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -74,6 +83,16 @@ subprojects {
     }
 }
 
+project(':shared') {
+    bootJar {
+        enabled = false
+    }
+
+    jar {
+        enabled = true
+    }
+}
+
 project(':core') {
     bootJar {
         enabled = false
@@ -81,6 +100,10 @@ project(':core') {
 
     jar {
         enabled = true
+    }
+    
+    dependencies {
+        implementation project(':shared')
     }
 }
 

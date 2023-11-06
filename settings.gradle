@@ -9,5 +9,6 @@
 
 rootProject.name = 'f7dec8'
 
+include 'shared'
 include 'core'
 include 'iam'
