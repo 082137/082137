@@ -1,0 +1,8 @@
+{
+  "name": "@082137/docs",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  }
+}

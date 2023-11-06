@@ -1,0 +1,21 @@
+{
+  "name": "@082137/core",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/082137/082137.git#client",
+    "directory": "packages/core"
+  },
+  "main": "./index.ts",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./index.ts",
+      "require": "./index.ts"
+    }
+  },
+  "dependencies": {
+    "@082137/shared": "workspace:*"
+  }
+}
