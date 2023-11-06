@@ -1,0 +1,16 @@
+spring:
+  data:
+    redis:
+      host: antnest.co.kr
+      port: 16379
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://antnest.co.kr:13066/SMG?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
+    username: smg
+    password: smg123!
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+
+logging:
+  level:
+    '[com.f7dec8]': debug
