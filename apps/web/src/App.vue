@@ -4,6 +4,8 @@
   <VApp>
     <VAppBar />
     <VNavigationDrawer />
-    <VMain scrollable> ddd </VMain>
+    <VMain>
+      <VContainer tag="section"> ddddddd </VContainer>
+    </VMain>
   </VApp>
 </template>
