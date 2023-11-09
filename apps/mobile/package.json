@@ -1,0 +1,20 @@
+{
+  "name": "@082137/mobile",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/082137/082137.git#client",
+    "directory": "apps/mobile"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "@082137/core": "workspace:*"
+  },
+  "devDependencies": {}
+}

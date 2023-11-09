@@ -1,1 +1,1 @@
-export * from './useShared';
+export * from './createVuetify';

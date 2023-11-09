@@ -12,13 +12,20 @@
   },
   "workspaces": [
     "apps/*",
+    "modules/**/*",
     "packages/*"
   ],
   "packageManager": "pnpm@8.9.2",
   "scripts": {
+    "admin:dev": "pnpm --filter @082137/admin dev",
+    "admin:build": "pnpm --filter @082137/admin build",
+    "admin:preview": "pnpm --filter @082137/admin preview",
     "docs:dev": "pnpm --filter @082137/docs dev",
     "docs:build": "pnpm --filter @082137/docs build",
     "docs:preview": "pnpm --filter @082137/docs preview",
+    "mobile:dev": "pnpm --filter @082137/mobile dev",
+    "mobile:build": "pnpm --filter @082137/mobile build",
+    "mobile:preview": "pnpm --filter @082137/mobile preview",
     "web:dev": "pnpm --filter @082137/web dev",
     "web:build": "pnpm --filter @082137/web build",
     "web:preview": "pnpm --filter @082137/web preview"
@@ -29,13 +36,14 @@
     "vue-router": "^4.2.2"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.8",
     "@vueuse/core": "^10.5.0",
-    "axios": "^1.6.0",
-    "vuetify": "^3.3.23"
+    "@vueuse/integrations": "^10.5.0",
+    "@vueuse/router": "^10.5.0",
+    "axios": "^1.6.1",
+    "vuetify": "^3.4.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.4.0",
+    "@vitejs/plugin-vue": "^4.4.1",
     "pnpm": "^8.10.2",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
