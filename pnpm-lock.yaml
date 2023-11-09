@@ -72,6 +72,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
 
+  modules/web/iam: {}
+
   packages/core:
     dependencies:
       '@082137/shared':
