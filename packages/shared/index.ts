@@ -1,1 +1,3 @@
-export * from './createVuetify';
+export * from './createDefaultAxios';
+export * from './createDefaultRouter';
+export * from './createDefaultVuetify';

@@ -36,17 +36,26 @@
     "vue-router": "^4.2.2"
   },
   "dependencies": {
-    "@vueuse/core": "^10.5.0",
-    "@vueuse/integrations": "^10.5.0",
-    "@vueuse/router": "^10.5.0",
+    "@vueuse/core": "^10.6.0",
+    "@vueuse/integrations": "^10.6.0",
+    "@vueuse/router": "^10.6.0",
     "axios": "^1.6.1",
+    "lru-cache": "^10.0.1",
+    "qs": "^6.11.2",
     "vuetify": "^3.4.0"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.11",
+    "@types/qs": "^6.9.10",
     "@vitejs/plugin-vue": "^4.4.1",
+    "eslint": "^8.53.0",
+    "eslint-plugin-vue": "^9.18.1",
     "pnpm": "^8.10.2",
+    "prettier": "^3.0.3",
+    "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
+    "vite-plugin-mkcert": "^1.16.0",
     "vitepress": "1.0.0-rc.25",
     "vue-tsc": "^1.8.22"
   }
