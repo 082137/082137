@@ -1,13 +1,15 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   data:
     redis:
-      host: antnest.co.kr
-      port: 16379
+      host: ${redis.host}
+      port: ${redis.port}
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://antnest.co.kr:13066/SMG?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
-    username: smg
-    password: smg123!
+    url: jdbc:mariadb://${db.host}:${db.port}/${db.schema}?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
+    username: ${db.username}
+    password: ${db.password}
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
 
