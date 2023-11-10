@@ -6,7 +6,8 @@ import {
   type DefaultRouterOptions,
   type DefaultVuetifyOptions,
 } from '@082137/shared';
-import { type App } from 'vue';
+import { type App, warn } from 'vue';
+import { useLocale } from 'vuetify';
 
 export interface CoreOptions {
   axiosOptions?: DefaultAxiosOptions;
@@ -23,7 +24,18 @@ export function createCore(options: CoreOptions = {}) {
     router,
     vuetify,
     install(app: App) {
+      console.log('warn', warn);
       app.use(router).use(vuetify);
+      app.config.globalProperties.$t = function (key, ...args) {
+        console.log('this', this, 'key', key);
+        return;
+      };
+      // Object.defineProperty(app.config.globalProperties, '$t', {
+      //   value: function (key: string) {
+      //     console.log('this', this);
+      //     return this.$vuetify.locale.t(`$vuetify.${key}`);
+      //   },
+      // });
     },
   };
 }

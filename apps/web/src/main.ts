@@ -7,6 +7,11 @@ const core = createCore({
   routerOptions: {
     routes: [],
   },
+  vuetifyOptions: {
+    locale: {
+      locale: 'ko',
+    },
+  },
 });
 
 createApp(App).use(core).mount('#app');
