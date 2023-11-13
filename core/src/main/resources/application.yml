@@ -12,7 +12,3 @@ spring:
     password: ${db.password}
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
-
-logging:
-  level:
-    '[com.f7dec8]': debug
