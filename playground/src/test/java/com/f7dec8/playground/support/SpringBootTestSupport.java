@@ -1,4 +1,4 @@
-package com.f7dec8.playground;
+package com.f7dec8.playground.support;
 
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
