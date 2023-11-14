@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@GenericGenerator(name = TsidGenerator.NAME, type = TsidGenerator.class)
+@GenericGenerator(name = "tsid", type = TsidGenerator.class)
 public class Tsid extends Audit {
 
     @Id
-    @GeneratedValue(generator = TsidGenerator.NAME)
+    @GeneratedValue(generator = "tsid")
     private Long id;
 
 }

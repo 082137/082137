@@ -13,8 +13,6 @@ import com.github.f4b6a3.tsid.TsidCreator;
 
 public class TsidGenerator implements IdentifierGenerator {
 
-    public static final String NAME = "tsid-generator";
-
     private static final long serialVersionUID = 20231114L;
 
     private Class<?> propertyType = Long.class;

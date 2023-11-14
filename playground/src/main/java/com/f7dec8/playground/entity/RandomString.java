@@ -2,7 +2,7 @@ package com.f7dec8.playground.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.f7dec8.core.hibernate.id.RandomStringGenerator;
+import com.f7dec8.core.hibernate.id.RsidGenerator;
 import com.f7dec8.shared.entity.Audit;
 
 import jakarta.persistence.Entity;
@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@GenericGenerator(name = RandomStringGenerator.NAME, type = RandomStringGenerator.class)
+@GenericGenerator(name = "rsid", type = RsidGenerator.class)
 public class RandomString extends Audit {
 
     @Id
-    @GeneratedValue(generator = RandomStringGenerator.NAME)
+    @GeneratedValue(generator = "rsid")
     private String id;
 
 }

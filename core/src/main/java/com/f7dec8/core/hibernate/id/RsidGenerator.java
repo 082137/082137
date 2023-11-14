@@ -12,9 +12,7 @@ import org.hibernate.id.IdentifierGenerator;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.type.Type;
 
-public class RandomStringGenerator implements IdentifierGenerator {
-
-    public static final String NAME = "random-string-generator";
+public class RsidGenerator implements IdentifierGenerator {
 
     private static final long serialVersionUID = 20231114L;
 
