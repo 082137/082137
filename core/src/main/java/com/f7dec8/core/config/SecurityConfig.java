@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class ApplicationSecurityConfig {
+public class SecurityConfig {
 
 //    private final CorsFilter corsFilter;
 
