@@ -1,4 +1,4 @@
-package com.f7dec8.core.persistence;
+package com.f7dec8.core.hibernate.id;
 
 import java.security.SecureRandom;
 import java.util.Properties;

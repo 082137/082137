@@ -1,4 +1,4 @@
-package com.f7dec8.playground.persistence;
+package com.f7dec8.playground.hibernate.id;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

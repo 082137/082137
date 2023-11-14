@@ -16,8 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableJpaAuditing
-@EntityScan("${spring.jpa.properties.base-packages}")
-@EnableJpaRepositories("${spring.jpa.properties.base-packages}")
+@EntityScan("com.f7dec8")
+@EnableJpaRepositories("com.f7dec8")
 public class JpaConfig {
 
     @Bean
@@ -31,7 +31,7 @@ public class JpaConfig {
         public Optional<Object> getCurrentAuditor() {
 
             log.debug("#### getCurrentAuditor");
-            
+
             Authentication autentication = SecurityContextHolder.getContext().getAuthentication();
             if (autentication == null || !autentication.isAuthenticated()) {
                 return null;
