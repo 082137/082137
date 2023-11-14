@@ -1,4 +1,4 @@
-package com.f7dec8.core.hibernate.id;
+package com.f7dec8.shared.hibernate.id;
 
 import java.util.Properties;
 

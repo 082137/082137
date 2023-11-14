@@ -39,7 +39,7 @@ public class SecurityConfig {
 //                })
 //                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
 //                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.))
-                .securityContext(context -> context.securityContextRepository(securityContextRepository()))
+//                .securityContext(context -> context.securityContextRepository(securityContextRepository()))
                 .authorizeHttpRequests(request -> request.requestMatchers("/version").permitAll())
                 .authorizeHttpRequests(request -> request.anyRequest().authenticated())
                 .build();
