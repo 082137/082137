@@ -1,3 +1,4 @@
+import { initFederation } from '@softarc/native-federation';
 import { createCore } from '@082137/core';
 import { createApp } from 'vue';
 // import './style.css';
@@ -13,5 +14,9 @@ const core = createCore({
     },
   },
 });
+
+// (async () => {
+//   await initFederation({});
+// })();
 
 createApp(App).use(core).mount('#app');
