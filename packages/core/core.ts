@@ -7,7 +7,6 @@ import {
   type DefaultVuetifyOptions,
 } from '@082137/shared';
 import { type App, warn } from 'vue';
-import { useLocale } from 'vuetify';
 
 export interface CoreOptions {
   axiosOptions?: DefaultAxiosOptions;

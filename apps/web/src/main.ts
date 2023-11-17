@@ -1,12 +1,20 @@
-import { initFederation } from '@softarc/native-federation';
 import { createCore } from '@082137/core';
 import { createApp } from 'vue';
-// import './style.css';
-import App from './App.vue';
+
+import App from '@/App.vue';
 
 const core = createCore({
   routerOptions: {
-    routes: [],
+    routes: [
+      {
+        path: '/tv',
+        children: [{ path: ':pathMatch(.*)*', component: () => import('@/components/AppFrame.vue') }],
+      },
+      {
+        path: '/mall',
+        children: [{ path: ':pathMatch(.*)*', component: () => import('@/components/AppFrame.vue') }],
+      },
+    ],
   },
   vuetifyOptions: {
     locale: {
@@ -14,9 +22,5 @@ const core = createCore({
     },
   },
 });
-
-// (async () => {
-//   await initFederation({});
-// })();
 
 createApp(App).use(core).mount('#app');
