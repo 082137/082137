@@ -12,5 +12,3 @@ spring:
     password: ${db.password}
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
-    properties:
-      base-packages: com.f7dec8

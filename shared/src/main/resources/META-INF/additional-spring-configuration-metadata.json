@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.security.authentication.success-handler",
+      "type": "com.f7dec8.shared.properties.AuthenticationSuccessHandlerProperties"
+    }
+  ]
+}
