@@ -6,14 +6,14 @@ import org.springframework.http.HttpStatus;
 import lombok.Getter;
 
 @Getter
-public class DoNotSomethingException extends RuntimeException {
+public class DoSomethingException extends RuntimeException {
 
     private static final long serialVersionUID = -6988727589259148693L;
 
     private final HttpHeaders headers = new HttpHeaders();
     private final HttpStatus statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     
-    public DoNotSomethingException(String message) {
+    public DoSomethingException(String message) {
         super(message);
     }
 

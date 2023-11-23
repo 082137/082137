@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.f7dec8.shared.exception.DoNotSomethingException;
+import com.f7dec8.shared.exception.DoSomethingException;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -27,18 +27,18 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
         setMessageSource(messageSource);
     }
 
-    @ExceptionHandler({ DoNotSomethingException.class })
+    @ExceptionHandler({ DoSomethingException.class })
     public final ResponseEntity<Object> handleGlobalException(Exception ex, WebRequest request) throws Exception {
-        if (ex instanceof DoNotSomethingException subEx) {
-            return handleDoNotSomethingException(subEx, subEx.getHeaders(), subEx.getStatusCode(), request);
+        if (ex instanceof DoSomethingException subEx) {
+            return handleDoSomethingException(subEx, subEx.getHeaders(), subEx.getStatusCode(), request);
         }
         throw ex;
     }
 
     // XXX Sample
-    protected ResponseEntity<Object> handleDoNotSomethingException(DoNotSomethingException ex, HttpHeaders headers,
+    protected ResponseEntity<Object> handleDoSomethingException(DoSomethingException ex, HttpHeaders headers,
             HttpStatusCode status, WebRequest request) {
-        String body = "Do Not Something";
+        String body = "Do Something";
         return handleExceptionInternal(ex, body, headers, status, request);
     }
 
