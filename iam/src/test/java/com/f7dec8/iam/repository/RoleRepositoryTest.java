@@ -8,6 +8,7 @@ import com.f7dec8.iam.support.SpringBootTestSupport;
 public class RoleRepositoryTest extends SpringBootTestSupport {
 
     @Autowired
+    @SuppressWarnings("unused")
     private AuthorityRepository role;
 
 }

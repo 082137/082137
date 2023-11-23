@@ -35,6 +35,7 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
         throw ex;
     }
 
+    // XXX Sample
     protected ResponseEntity<Object> handleDoNotSomethingException(DoNotSomethingException ex, HttpHeaders headers,
             HttpStatusCode status, WebRequest request) {
         String body = "Do Not Something";
