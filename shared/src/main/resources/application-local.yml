@@ -1,4 +1,18 @@
+server:
+  port: 3170
+  
 spring:
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    redis:
+      host: ${redis.host}
+      port: ${redis.port}
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${db.host}:${db.port}/${db.schema}?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
+    username: ${db.username}
+    password: ${db.password}
   jpa:
     generate-ddl: true
     hibernate:

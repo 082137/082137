@@ -2,7 +2,7 @@ package com.f7dec8.shared.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.f7dec8.shared.hibernate.id.RsidGenerator;
+import com.f7dec8.shared.jpa.RsidGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

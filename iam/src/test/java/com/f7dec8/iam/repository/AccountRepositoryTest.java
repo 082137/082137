@@ -15,9 +15,9 @@ public class AccountRepositoryTest extends SpringBootTestSupport {
     private AccountRepository account;
 
     @Test
-    public void testFindByUsername() {
+    public void testFindById() {
         String username = "admin";
-        Optional<Account> one = account.findByUsername(username);
+        Optional<Account> one = account.findById(username);
         if (one.isPresent()) {
             debug(one.get());
         }

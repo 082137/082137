@@ -2,7 +2,7 @@ package com.f7dec8.playground.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.f7dec8.shared.hibernate.id.TsidGenerator;
+import com.f7dec8.shared.jpa.TsidGenerator;
 import com.f7dec8.shared.model.Audit;
 
 import jakarta.persistence.Entity;

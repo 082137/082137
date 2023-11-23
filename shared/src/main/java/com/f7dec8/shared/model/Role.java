@@ -24,10 +24,7 @@ public class Role extends Audit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(length = 30, unique = true, nullable = false)
     private String name;
-
-    @Column(unique = true)
-    private String authority;
 
 }

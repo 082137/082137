@@ -1,4 +1,4 @@
-package com.f7dec8.shared.hibernate.id;
+package com.f7dec8.shared.jpa;
 
 import java.security.SecureRandom;
 import java.util.Properties;

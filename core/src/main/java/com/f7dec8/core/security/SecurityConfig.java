@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import lombok.RequiredArgsConstructor;
 
@@ -44,7 +45,12 @@ public class SecurityConfig {
                                         + "font-src 'self' data:; "
 //                                        + "default-src 'self'; "
                                         + "frame-src 'self'")))
-                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/test/**"))
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+//                .authorizeHttpRequests(request -> request.anyRequest().permitAll())
                 .build();
     }
 

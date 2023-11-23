@@ -1,4 +1,4 @@
-package com.f7dec8.core.config;
+package com.f7dec8.core.jpa;
 
 import java.util.Optional;
 
