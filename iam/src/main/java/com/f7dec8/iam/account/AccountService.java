@@ -1,4 +1,4 @@
-package com.f7dec8.iam.account.service;
+package com.f7dec8.iam.account;
 
 import java.util.Optional;
 
@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.f7dec8.iam.account.repository.AccountRepository;
 import com.f7dec8.shared.model.Account;
 
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.f7dec8.iam.account.repository;
+package com.f7dec8.iam.account;
 
 import java.util.Optional;
 

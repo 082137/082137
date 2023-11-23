@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.f7dec8.iam.account.repository.AccountRepository;
+import com.f7dec8.iam.account.AccountRepository;
 import com.f7dec8.iam.support.SpringBootTestSupport;
 import com.f7dec8.shared.model.Account;
 
