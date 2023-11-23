@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.f7dec8.iam.account.repository.AccountRepository;
 import com.f7dec8.iam.support.SpringBootTestSupport;
-import com.f7dec8.shared.entity.Account;
+import com.f7dec8.shared.model.Account;
 
 public class AccountRepositoryTest extends SpringBootTestSupport {
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.f7dec8.playground.support.SpringBootTestSupport;
-import com.f7dec8.shared.entity.Company;
+import com.f7dec8.shared.model.Company;
 
 public class CompanyRepositoryTest extends SpringBootTestSupport {
 

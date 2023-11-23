@@ -1,4 +1,4 @@
-package com.f7dec8.shared.entity;
+package com.f7dec8.shared.model;
 
 import org.hibernate.annotations.GenericGenerator;
 

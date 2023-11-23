@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      springframework: debug
+    com:
+      f7dec8: debug

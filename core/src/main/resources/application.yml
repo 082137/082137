@@ -12,3 +12,4 @@ spring:
     password: ${db.password}
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
+    show-sql: true

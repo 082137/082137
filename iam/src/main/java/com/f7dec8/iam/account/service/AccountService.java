@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.f7dec8.iam.account.repository.AccountRepository;
-import com.f7dec8.shared.entity.Account;
+import com.f7dec8.shared.model.Account;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,14 +32,11 @@ public class AccountService implements UserDetailsService {
     }
     
     private UserDetails toUserDetails(Account account) {
-        UserDetails user = User.builder()
+        return User.builder()
                 .username(account.getId())
                 .password(account.getPassword())
-//                .password("$2a$10$lSyiY/v52VOpc6FOWe5bn.fVKVMvddjeAU24GIWD82s5pBXsy4jYG")
                 .authorities("ROLE_SUPER_ADMIN")
                 .build();
-        log.debug("#### user: {}", user);
-        return user;
     }
 //
 //    public static void main(String[] args) {

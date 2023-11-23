@@ -24,18 +24,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+//    private DefaultFormLoginConfigurer formLogin;
+    
     private final AuthenticationSuccessHandler successHandler;
     private final AuthenticationFailureHandler failureHandler;
     
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(AbstractHttpConfigurer::disable)
-//                .formLogin(Customizer.withDefaults())
-//                .httpBasic(AbstractHttpConfigurer::disable)
+        return http.csrf(AbstractHttpConfigurer::disable)
                 .formLogin(configurer -> configurer
                         .successHandler(successHandler)
                         .failureHandler(failureHandler))
+//                .formLogin(formLogin.toConfigurer())
                 .headers(configurer -> configurer
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                         .contentSecurityPolicy(policyConfig -> policyConfig
@@ -53,10 +53,6 @@ public class SecurityConfig {
         return new HttpSessionSecurityContextRepository();
     }
 
-    // UserDetailsService 재정의
-    // User 사용
-    // SavedRequestAwareAuthenticationSuccessHandler 로그인 성공 핸들러
-
     @Bean
     protected WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
@@ -67,16 +63,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
     
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("1q2w3e4r#"));
-    }
-    
-//    @Bean
-//    protected AuthenticationSuccessHandler successHandler(AuthenticationSuccessHandler handler) {
-//        if (handler == null) {
-//            return new DefaultAuthenticationSuccessHandler();
-//        }
-//        return handler;
-//    }
-
 }

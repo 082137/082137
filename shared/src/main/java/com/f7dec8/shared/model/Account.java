@@ -1,4 +1,4 @@
-package com.f7dec8.shared.entity;
+package com.f7dec8.shared.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,10 +21,10 @@ public class Account extends Audit {
     @Id
     private String id;
 
-    @Column
+    @Column(length = 30, unique = true, nullable = false)
     private String username;
 
-    @Column
+    @Column(length = 60, nullable = false)
     private String password;
 
 }
