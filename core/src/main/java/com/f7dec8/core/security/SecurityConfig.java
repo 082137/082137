@@ -27,8 +27,6 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-//    private DefaultFormLoginConfigurer formLogin;
-    
     private final AuthenticationSuccessHandler successHandler;
     private final AuthenticationFailureHandler failureHandler;
     
@@ -38,7 +36,6 @@ public class SecurityConfig {
                 .formLogin(configurer -> configurer
                         .successHandler(successHandler)
                         .failureHandler(failureHandler))
-//                .formLogin(formLogin.toConfigurer())
                 .headers(configurer -> configurer
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                         .contentSecurityPolicy(policyConfig -> policyConfig
@@ -52,7 +49,6 @@ public class SecurityConfig {
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-//                .authorizeHttpRequests(request -> request.anyRequest().permitAll())
                 .build();
     }
 
@@ -65,12 +61,13 @@ public class SecurityConfig {
     protected WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
-    
+
     @Bean
     protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
+    // TODO 나중에 하기
     @Bean
     protected PermissionEvaluator permissionEvaluator() {
         return new DefaultPermissionEvaluator();

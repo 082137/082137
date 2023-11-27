@@ -21,26 +21,37 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class EndpointLog extends Audit {
+public class EndpointLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * 시그니쳐
-     * <p>호출된 메서드의 정보를 나타냅니다.</p>
+     * 사용자 정보
+     * <p>
+     * 사용자를 인증하는 데 사용된 사용자 이름(Authentication#getName)입니다.
+     * </p>
      */
-    @Column
+    @Column(nullable = false)
+    private String username;
+
+    /**
+     * 시그니쳐
+     * <p>
+     * 호출된 메서드의 정보를 나타냅니다.
+     * </p>
+     */
+    @Column(nullable = false)
     private String signature;
-    
+
     /**
      * 요청 메서드
      * <p>
      * 클라이언트가 사용한 HTTP 메서드(GET, POST, PUT, DELETE 등)를 기록합니다.
      * </p>
      */
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RequestMethod method;
 
@@ -53,7 +64,7 @@ public class EndpointLog extends Audit {
      * 이는 어떤 API 또는 서비스가 호출되었는지를 명확히 파악하는 데 도움이 됩니다.
      * </p>
      */
-    @Column
+    @Column(nullable = false)
     private String path;
 
     /**
@@ -112,7 +123,7 @@ public class EndpointLog extends Audit {
      * 클라이언트의 IP 주소를 기록하여 요청이 어디서 왔는지를 추적합니다.
      * </p>
      */
-    @Column
+    @Column(nullable = false)
     public String clientIpAddress;
 
 }

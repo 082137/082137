@@ -10,6 +10,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -41,6 +43,7 @@ public class EndpointsLogAspect {
         
         long start = System.nanoTime();
         
+        String username = getUsername();
         String signature = getSignature(joinpoint);
         RequestMethod method = getMethod(request);
         String path = getPath(request);
@@ -53,6 +56,7 @@ public class EndpointsLogAspect {
         double executionTimeMillis = getExecutionTimeMillis(start, end);
         
         EndpointLog log = EndpointLog.builder()
+                .username(username)
                 .signature(signature)
                 .method(method)
                 .path(path)
@@ -68,6 +72,14 @@ public class EndpointsLogAspect {
     
     private HttpServletRequest getRequest() {
         return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+    }
+    
+    private String getUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            return "Anonymous";
+        }
+        return authentication.getName();
     }
     
     private String getSignature(ProceedingJoinPoint joinpoint) {
