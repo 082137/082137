@@ -9,9 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Configuration
 @EnableJpaAuditing
 public class JpaConfig {
@@ -25,14 +22,10 @@ public class JpaConfig {
 
         @Override
         public Optional<Object> getCurrentAuditor() {
-
-            log.debug("#### getCurrentAuditor");
-
             Authentication autentication = SecurityContextHolder.getContext().getAuthentication();
             if (autentication == null || !autentication.isAuthenticated()) {
-                return Optional.of("A");
+                return Optional.of("GUEST");
             }
-
             return Optional.of(autentication.getPrincipal());
         }
 
