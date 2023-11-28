@@ -1,5 +1,7 @@
 package com.f7dec8.shared.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.persistence.Column;
@@ -108,7 +110,7 @@ public class EndpointLog {
     /**
      * 요청 시간(milliseconds)
      * <p>
-     * 엔트리포인트의 실행에 걸린 시간을 측정하고 기록합니다.
+     * 엔드포인트의 실행에 걸린 시간을 측정하고 기록합니다.
      * </p>
      * <p>
      * 성능 모니터링에 도움이 됩니다.
@@ -124,6 +126,15 @@ public class EndpointLog {
      * </p>
      */
     @Column(nullable = false)
-    public String clientIpAddress;
+    private String clientIpAddress;
+
+    /**
+     * 타임스탬프
+     * <p>
+     * 엔드포인트를 요청한 시간을 기록합니다.
+     * </p>
+     */
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime timestamp;
 
 }

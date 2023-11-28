@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice
 @RequiredArgsConstructor
-public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
+public class RestControllerExceptionAdvice extends ResponseEntityExceptionHandler {
 
     private final MessageSource messageSource;
 

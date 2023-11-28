@@ -1,5 +1,6 @@
 package com.f7dec8.core.endpoints;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -51,6 +52,7 @@ public class EndpointsLogAspect {
         String responseBody = getResponseBody(joinpoint);
         int responseStatusCode = getResponseStatusCode(joinpoint);
         String clientIpAddress = getClientIpAddress(request);
+        LocalDateTime timestamp = LocalDateTime.now();
         
         long end = System.nanoTime();
         double executionTimeMillis = getExecutionTimeMillis(start, end);
@@ -65,6 +67,7 @@ public class EndpointsLogAspect {
                 .responseStatusCode(responseStatusCode)
                 .executionTimeMillis(executionTimeMillis)
                 .clientIpAddress(clientIpAddress)
+                .timestamp(timestamp)
                 .build();
         
         service.logging(log);

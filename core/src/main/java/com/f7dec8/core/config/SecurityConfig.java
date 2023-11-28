@@ -1,9 +1,9 @@
-package com.f7dec8.core.security;
+package com.f7dec8.core.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,8 +13,6 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -27,15 +25,14 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    private final AuthenticationSuccessHandler successHandler;
-    private final AuthenticationFailureHandler failureHandler;
-    
     @Bean
+    @ConditionalOnMissingBean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return configure(http).build();
+    }
+    
+    protected HttpSecurity configure(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .formLogin(configurer -> configurer
-                        .successHandler(successHandler)
-                        .failureHandler(failureHandler))
                 .headers(configurer -> configurer
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                         .contentSecurityPolicy(policyConfig -> policyConfig
@@ -49,9 +46,10 @@ public class SecurityConfig {
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .build();
+                .formLogin(AbstractHttpConfigurer::disable)
+                .logout(AbstractHttpConfigurer::disable);
     }
-
+    
     @Bean
     protected SecurityContextRepository securityContextRepository() {
         return new HttpSessionSecurityContextRepository();
@@ -67,10 +65,12 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // TODO 나중에 하기
-    @Bean
-    protected PermissionEvaluator permissionEvaluator() {
-        return new DefaultPermissionEvaluator();
-    }
+//    @Bean
+//    @ConditionalOnMissingBean
+//    protected MethodSecurityExpressionHandler methodSecurityExpressionHandler() {
+//        DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
+//        handler.setPermissionEvaluator(new DefaultPermissionEvaluator());
+//        return handler;
+//    }
     
 }
