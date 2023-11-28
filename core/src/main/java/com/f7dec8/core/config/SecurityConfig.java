@@ -21,9 +21,7 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.security.web.context.SecurityContextRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -55,8 +53,9 @@ public class SecurityConfig {
                                         + "img-src 'self';"
 //                                        + "style-src 'self' 'unsafe-inline';"
                                         + "frame-src 'self';")))
-                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
-                ;
+                .authorizeHttpRequests(request -> request
+                        .anyRequest()
+                        .authenticated());
     }
     
     @Bean

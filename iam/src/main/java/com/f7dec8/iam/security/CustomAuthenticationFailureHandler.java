@@ -15,7 +15,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
     public CustomAuthenticationFailureHandler() {
         super();
-        setDefaultFailureUrl("/login");
+//        setDefaultFailureUrl("/login");
     }
 
     @Override
