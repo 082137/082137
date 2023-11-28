@@ -19,7 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 public class EndpointTestController {
 
     @GetMapping
-    @PreAuthorize("hasPermission('a', 'a')")
+//    @PreAuthorize("hasPermission(#a, 'a', 'a')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Map<String, Object>> endpoints(String a, String b) {
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("a", a);

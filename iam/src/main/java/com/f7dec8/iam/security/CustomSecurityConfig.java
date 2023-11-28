@@ -2,6 +2,7 @@ package com.f7dec8.iam.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,10 +26,12 @@ public class CustomSecurityConfig extends SecurityConfig {
 
     @Override
     protected HttpSecurity configure(HttpSecurity http) throws Exception {
-        return super.configure(http)
+        http = super.configure(http);
+        return http
                 .formLogin(configurer -> configurer
                         .successHandler(successHandler())
-                        .failureHandler(failureHandler()));
+                        .failureHandler(failureHandler()))
+                .logout(configurer -> configurer.logoutSuccessUrl("/login"));
     }
 
     @Bean
@@ -43,9 +46,14 @@ public class CustomSecurityConfig extends SecurityConfig {
 
     @Bean
     protected MethodSecurityExpressionHandler methodSecurityExpressionHandler() {
-        DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
-        handler.setPermissionEvaluator(new CustomPermissionEvaluator());
+        MethodSecurityExpressionHandler handler = super.methodSecurityExpressionHandler();
+        ((DefaultMethodSecurityExpressionHandler) handler).setPermissionEvaluator(permissionEvaluator());
         return handler;
+    }
+
+    @Bean
+    protected PermissionEvaluator permissionEvaluator() {
+        return new CustomPermissionEvaluator();
     }
 
 }

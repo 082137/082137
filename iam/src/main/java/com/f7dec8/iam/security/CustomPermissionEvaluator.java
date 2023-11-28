@@ -21,7 +21,9 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
             Object permission) {
         log.debug("#### IAM CustomPermissionEvaluator hasPermission: {}, {}, {}, {}", authentication, targetId,
                 targetType, permission);
-        return false;
+        return true;
     }
 
+    // 아래에 속성별 권한 설정 시작
+    
 }

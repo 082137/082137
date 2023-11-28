@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class UserDetailsFacade implements UserDetailsService {
 
     private final AccountService account;
-    // private final RoleService role;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,13 +30,8 @@ public class UserDetailsFacade implements UserDetailsService {
         return User.builder()
                 .username(account.getUsername())
                 .password(account.getPassword())
+                .authorities("ROLE_USER")
                 .build();
     }
-
-//  public static void main(String[] args) {
-//  PasswordEncoder pe = new BCryptPasswordEncoder();
-//  System.out.println(pe.encode("1q2w3e4r#"));
-//  // $2a$10$lSyiY/v52VOpc6FOWe5bn.fVKVMvddjeAU24GIWD82s5pBXsy4jYG
-//}
     
 }

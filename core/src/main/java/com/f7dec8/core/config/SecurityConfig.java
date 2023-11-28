@@ -4,6 +4,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
+import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,16 +19,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
-@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+//    private final AuthoritiesAuthorizationManager authorizationManager;
+    
     @Bean
     @ConditionalOnMissingBean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -32,22 +39,24 @@ public class SecurityConfig {
     }
     
     protected HttpSecurity configure(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .logout(AbstractHttpConfigurer::disable)
                 .headers(configurer -> configurer
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
+                        // TODO 정책 필요한가?
                         .contentSecurityPolicy(policyConfig -> policyConfig
-                                .policyDirectives("script-src 'self'; "
-                                        + "img-src 'self'; "
-                                        + "font-src 'self' data:; "
+                                .policyDirectives(""
 //                                        + "default-src 'self'; "
-                                        + "frame-src 'self'")))
-                .authorizeHttpRequests(request -> request
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/test/**"))
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .formLogin(AbstractHttpConfigurer::disable)
-                .logout(AbstractHttpConfigurer::disable);
+                                        + "connect-src 'self';"
+                                        + "font-src 'self' data:; "
+                                        + "script-src 'self'; "
+                                        + "img-src 'self';"
+//                                        + "style-src 'self' 'unsafe-inline';"
+                                        + "frame-src 'self';")))
+                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+                ;
     }
     
     @Bean
@@ -64,13 +73,20 @@ public class SecurityConfig {
     protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    @ConditionalOnMissingBean
-//    protected MethodSecurityExpressionHandler methodSecurityExpressionHandler() {
-//        DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
-//        handler.setPermissionEvaluator(new DefaultPermissionEvaluator());
-//        return handler;
-//    }
+    
+    @Bean
+    @ConditionalOnMissingBean
+    protected MethodSecurityExpressionHandler methodSecurityExpressionHandler() {
+        DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
+        handler.setRoleHierarchy(roleHierachy());
+        return handler;
+    }
+    
+    @Bean
+    protected RoleHierarchy roleHierachy() {
+        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+        hierarchy.setHierarchy("ROLE_ADMIN > ROLE_USER");
+        return hierarchy;
+    }
     
 }

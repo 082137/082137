@@ -2,9 +2,7 @@ package com.f7dec8.iam.security;
 
 import java.io.IOException;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import jakarta.servlet.ServletException;
@@ -17,7 +15,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
     public CustomAuthenticationFailureHandler() {
         super();
-        setDefaultFailureUrl("/");
+        setDefaultFailureUrl("/login");
     }
 
     @Override
@@ -28,13 +26,13 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
         saveException(request, exception);
 
-        String referer = request.getHeader(HttpHeaders.REFERER);
+//        String referer = request.getHeader(HttpHeaders.REFERER);
 
-        RedirectStrategy strategy = getRedirectStrategy();
-        strategy.sendRedirect(request, response, referer + "?error");
+//        RedirectStrategy strategy = getRedirectStrategy();
+//        strategy.sendRedirect(request, response, referer + "?error");
 //        request.getRequestDispatcher("/login?error").forward(request, response);
 
-//        super.onAuthenticationFailure(request, response, exception);
+        super.onAuthenticationFailure(request, response, exception);
     }
 
 }
