@@ -1,5 +1,55 @@
-<html>
-    <body>
-        sdafsadfsdf
-        </body>
-    </html>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
+          rel="stylesheet"
+          crossorigin="anonymous" />
+</head>
+<body>
+<div class="container" th:fragment="content">
+    <form class="form-signin" method="post" th:action="${url}">
+        <h2 class="form-signin-heading">Please sign in2222</h2>
+        <!--<p th:utext="${createError(loginError, errorMsg) + createLogoutSuccess(logoutSuccess)}"></p>-->
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="${usernameParameter}" class="form-control" placeholder="Username"
+                   required autofocus>
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="${passwordParameter}" class="form-control"
+                   placeholder="Password" required>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+    <!--
+    <h2 class="form-signin-heading" th:if="${oauth2LoginEnabled}">Login with OAuth 2.0</h2>
+    <p th:utext="${createError(loginError, errorMsg)}"></p>
+    <p th:utext="${createLogoutSuccess(logoutSuccess)}"></p>
+    <table class="table table-striped" th:if="${oauth2LoginEnabled}">
+        <tr th:each="client : ${oauth2AuthenticationUrlToClientName}">
+            <td><a th:href="@{${contextPath + client.key}}"><span th:text="${#strings.htmlEscape(client.value)}"></span></a></td>
+        </tr>
+    </table>
+
+    <h2 class="form-signin-heading" th:if="${saml2LoginEnabled}">Login with SAML 2.0</h2>
+    <p th:utext="${createError(loginError, errorMsg)}"></p>
+    <p th:utext="${createLogoutSuccess(logoutSuccess)}"></p>
+    <table class="table table-striped" th:if="${saml2LoginEnabled}">
+        <tr th:each="relyingParty : ${saml2AuthenticationUrlToProviderName}">
+            <td><a th:href="@{${contextPath + relyingParty.key}}"><span th:text="${#strings.htmlEscape(relyingParty.value)}"></span></a></td>
+        </tr>
+    </table>
+    -->
+</div>
+</body>
+</html>
